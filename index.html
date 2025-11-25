@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guimarães Sign — Comunicação Visual</title>
+  <meta name="description" content="Guimarães Sign — fachadas, letreiros, sinalização e comunicação visual." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --white:#ffffff;
+      --muted:#cbd9ff;
+      --blue:#00aaff;
+      --glass: rgba(255,255,255,0.05);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:var(--bg);color:var(--white);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:28px}
+
+ /* NAV STYLE — estilo inspirado na OpenCriativa */
+.nav {
+  height: 80px; /* altura fixa */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px; /* só espaçamento horizontal */
+  position:sticky;
+  top:0;
+  z-index:999;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.nav-left {
+  display:flex;
+  align-items:center;
+}
+
+.nav-logo {
+  height:200px;
+  object-fit:contain;
+  filter:drop-shadow(0px 0px 4px rgba(0,170,255,0.35));
+}
+
+.nav-links {
+  display:flex;
+  gap:26px;
+  align-items:center;
+}
+
+.nav-item {
+  font-weight:600;
+  padding:8px 4px;
+  color:white;
+  position:relative;
+  transition:0.25s;
+}
+
+.nav-item:hover {
+  color:var(--blue);
+}
+
+/* linha azul igual da OpenCriativa */
+.nav-item::after {
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:var(--blue);
+  border-radius:10px;
+  transition:0.25s;
+}
+
+.nav-item:hover::after {
+  width:100%;
+}
+
+/* HOME ATIVO */
+.nav-item.active {
+  color:var(--blue);
+}
+
+.nav-item.active::after {
+  width:100%;
+}
+
+/* RESPONSIVO */
+@media(max-width:820px){
+  .nav {
+    padding:0 12px;
+  }
+  .nav-logo{
+    height:36px;
+  }
+  .nav-links{
+    display:none; /* esconde por padrão no celular */
+    position:absolute;
+    top:80px;
+    left:0;
+    right:0;
+    background:rgba(0,0,0,0.95);
+    flex-direction:column;
+    padding:12px 0;
+    gap:10px;
+  }
+  .nav-links.show{
+    display:flex;
+  }
+}
+
+
+
+    /* HERO */
+    .hero{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:56px 0}
+    .hero-left{max-width:620px}
+    .hero h1{font-size:44px;line-height:1.05;margin:0}
+    .hero h1 .accent{color:var(--blue)}
+    .hero p{color:var(--muted);margin-top:14px}
+    .hero-cta{margin-top:22px}
+    .hero-cta .hero-btn{padding:14px 28px;border-radius:999px;font-weight:700}
+    .hero-right img{width:520px;max-width:100%;border-radius:14px;display:block;object-fit:cover}
+
+    /* BRANDS CAROUSEL */
+    .brands-wrap{width:100%;margin-top:36px}
+    .brands-title{ text-align:center;font-size:20px;font-weight:700;margin-bottom:18px;color:#fff}
+    .carousel-area{position:relative;background:#000;padding:28px 10px;border-radius:12px}
+    .carousel{display:flex;gap:28px;overflow:hidden;padding:6px 32px}
+    .carousel-inner{display:flex;gap:28px;transition:transform .35s ease}
+    .brand-card{flex:0 0 160px;height:110px;border-radius:12px;background:transparent;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:transform .22s ease}
+    .brand-card img{max-width:82%;max-height:72%;object-fit:contain;transition:transform .22s ease}
+    .brand-bg{position:absolute;inset:0;border-radius:12px;transform:scale(.3);opacity:0;background:var(--blue);transition:all .22s ease;z-index:1}
+    .brand-card:hover{transform:scale(1.07)}
+    .brand-card:hover img{transform:scale(1.08);z-index:2}
+    .brand-card:hover .brand-bg{transform:scale(1);opacity:.9}
+    .arrow-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:10px;border:none;background:rgba(255,255,255,0.06);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px}
+    .arrow-prev{left:8px}
+    .arrow-next{right:8px}
+    .arrow-btn:hover{background:var(--blue);color:#002}
+
+/* CATALOG (estilo Open) */
+.catalog {
+  position: relative;
+  margin-top: 40px;
+  padding: 80px 0;
+  background-image: url('/mnt/data/3ee19a64-dbb4-46fe-a730-128c09a603e0.png');
+  background-size: cover;
+  background-position: center;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.catalog::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.55));
+  mix-blend-mode: multiply;
+}
+
+.catalog-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 36px;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.catalog-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 18px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.catalog-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.catalog-icon img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain; /* mantém proporção da imagem */
+  display: block;
+}
+
+.catalog-item h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.catalog-item p {
+  margin-top: 8px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+/* Responsivo */
+@media(max-width: 980px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Notificação WhatsApp estilo iPhone */
+.whatsapp-notif {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: #0b0b0b;
+  border-left: 4px solid #00aaff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 10px;
+  z-index: 9999;
+  font-family: Inter, sans-serif;
+
+  /* substitui animação por transição */
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.6s cubic-bezier(.2,.9,.3,1);
+}
+.notif-body {
+  display: flex;           /* mantém em linha */
+  align-items: center;     /* centraliza verticalmente */
+  gap: 10px;               /* espaço entre imagem e texto */
+}
+.whatsapp-notif img {
+  width: 50px;
+  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(100px); opacity: 0; }
+  60% { transform: translateY(-10px); opacity: 1; }
+  80% { transform: translateY(5px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; } /* garante que fique visível */
+}
+.notif-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente ao lado da foto */
+  gap: 2px;
+}
+
+.notif-content strong {
+  font-size: 16px;
+  color: #fff;
+}
+
+.notif-content p {
+  font-size: 14px;
+  color: #cbd9ff;
+  margin: 0;
+}
+/* Botão de fechar */
+.notif-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+/* Pulso suave da borda estilo WhatsApp */
+@keyframes pulseBorderSoft {
+  0% { box-shadow: 0 0 0 0 rgba(102, 204, 255, 0.4); }
+  50% { box-shadow: 0 0 8px 4px rgba(102, 204, 255, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(102, 204, 255, 0.4); }
+}
+
+.notif-btn {
+  background: #00aaff; /* azul do site */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s;
+  border: 2px solid #66ccff; /* borda azul clara */
+  animation: pulseBorderSoft 2.5s infinite; /* pulso suave contínuo */
+}
+
+.notif-btn:hover {
+  background: #0088cc;
+  border-color: #99ddff; /* borda mais clara ao passar o mouse */
+  animation: none; /* pausa a animação ao hover */
+}
+.powered-by {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #ffffff;
+  font-family: Inter, sans-serif;
+  z-index: 9999;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+.powered-by:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.powered-by img {
+  height: 20px; /* deixa pequena, mas visível */
+  width: auto;
+  object-fit: contain;
+}
+/* Hero Button Estilizado */
+.hero-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  background: #00aaff; /* azul do site */
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #66ccff; /* borda azul clara */
+  transition: 0.3s;
+  animation: pulseBorderSoft 2.5s infinite; /* animação de pulso */
+}
+
+/* Hover do botão */
+.hero-btn:hover {
+  background: #0088cc;
+  border-color: #99ddff; /* borda mais clara ao passar o mouse */
+  animation: none; /* pausa o pulso no hover */
+}
+
+/* Animação de pulso suave */
+@keyframes pulseBorderSoft {
+  0% { box-shadow: 0 0 0 0 rgba(102, 204, 255, 0.4); }
+  50% { box-shadow: 0 0 8px 4px rgba(102, 204, 255, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(102, 204, 255, 0.4); }
+}
+/* RESPONSIVO MOBILE */
+@media (max-width: 980px) {
+  /* Hero */
+  .hero {
+    flex-direction: column;
+    padding: 28px 12px;
+  }
+  .hero-left {
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-right {
+    margin-top: 24px;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Nav */
+.nav-toggle {
+  display: none; /* inicialmente escondido */
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px; /* altura da nav */
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.95);
+    padding: 12px 0;
+    gap: 12px;
+    z-index: 999;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/* WhatsApp notification no mobile */
+@media(max-width:480px){
+  .whatsapp-notif {width: 90%; bottom: 12px; right: 5%;}
+}
+
+/* Catálogo */
+@media(max-width: 980px) {
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Portfólio */
+@media(max-width:980px){
+  .portfolio-main{height:360px}
+  .thumb{flex:0 0 90px;height:60px}
+}
+
+    /* PORTFOLIO (grande + thumbs) */
+    .portfolio{margin-top:48px;padding:40px 0}
+    .portfolio-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+    .portfolio-main{width:100%;height:520px;border-radius:14px;overflow:hidden;position:relative;background:#111;display:flex;align-items:center;justify-content:center}
+    .portfolio-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.2,.9,.3,1)}
+    .portfolio-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .portfolio-slide img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumbs{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:nowrap;overflow:hidden;padding:8px 12px}
+    .thumb{flex:0 0 120px;height:80px;border-radius:8px;overflow:hidden;cursor:pointer;opacity:.7;transition:all .22s}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb.active{opacity:1;transform:scale(1.04);box-shadow:0 8px 20px rgba(0,0,0,0.6)}
+
+    /* CONTACT */
+    .contact{padding:64px 0;background:var(--bg)}
+    .contact .card{background:var(--glass);padding:26px;border-radius:12px}
+
+    /* FOOTER */
+    footer{padding:28px 0;text-align:center;color:rgba(255,255,255,0.6);margin-top:28px}
+
+    /* RESPONSIVO */
+    @media(max-width:980px){
+      .hero{flex-direction:column}
+      .catalog-grid{grid-template-columns:1fr}
+      .brand-card{flex:0 0 140px}
+      .portfolio-main{height:360px}
+      .thumb{flex:0 0 90px;height:60px}
+    }
+    html {
+  scroll-behavior: smooth;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+ <!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="#hero">
+      <img src="images/LogoPNG.png" alt="Guimarães Sign" class="nav-logo">
+    </a>
+  </div>
+
+  <div class="nav-links">
+    <a href="#hero" class="nav-item active">Home</a>
+    <a href="#marcas" class="nav-item">Marcas</a>
+    <a href="#catalog" class="nav-item">Catálogo</a>
+    <a href="#services" class="nav-item">Serviços</a>
+    <a href="#orcamento" class="nav-item">Orçamento</a>
+  </div>
+</nav>
+
+
+  <!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <h1>Fachadas de impacto que <span class="accent">transformam sua marca</span></h1>
+    <p>Projetos de fachada, letreiros, envelopamento e comunicação visual pensados para gerar presença e vendas.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/5519996625228" target="_blank" class="hero-btn">Fale com um consultor</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="images/fachada1.jpg" alt="Fachada">
+  </div>
+</section>
+
+    <!-- BRANDS -->
+    <section class="brands-wrap" id="marcas">
+      <div class="brands-title">Trabalhamos com as melhores marcas do mercado</div>
+
+      <div class="carousel-area" aria-label="Marcas parceiras">
+        <button class="arrow-btn arrow-prev" id="prevBrand" aria-label="Anterior">‹</button>
+
+        <div class="carousel" role="list" aria-live="polite">
+          <div class="carousel-inner" id="carouselInner">
+            <a class="brand-card" href="https://alltak.com.br/" target="_blank"><div class="brand-bg"></div><img src="images/AllTak1.png" alt=""></a>
+            <a class="brand-card" href="https://geoplas.com.br/" target="_blank"><div class="brand-bg"></div><img src="images/Geo1.png" alt=""></a>
+            <a class="brand-card" href="https://www.orafol.com/en" target="_blank"><div class="brand-bg"></div><img src="images/Oracal1.png" alt=""></a>
+            <a class="brand-card" href="https://serilon.com.br/" target="_blank"><div class="brand-bg"></div><img src="images/Serilon1.png" alt=""></a>
+            <a class="brand-card" href="https://brasil.mimaki.com/" target="_blank"><div class="brand-bg"></div><img src="images/Mimaki1.png" alt=""></a>
+
+            <a class="brand-card" href="https://www.arclad.com.br/" target="_blank"><div class="brand-bg"></div><img src="images/Arclad1.png" alt=""></a>
+            <a class="brand-card" href="https://projetoaluminio.com.br/" target="_blank"><div class="brand-bg"></div><img src="images/Projeto1.png" alt=""></a>
+            <a class="brand-card" href="https://daybrasil.com.br/?utm_source=google&utm_medium=cpc&utm_campaign&utm_content&utm_term=day%20brasil&pht&gad_source=1&gad_campaignid=16890983034&gbraid=0AAAAADLDV1zozyvIGli5LVwtLBuOfE0-s&gclid=Cj0KCQiAxJXJBhD_ARIsAH_JGjinZMWzU9D0RR0Zsgs10QW141ZnGleuu8JGfynoA6EoADAAT9R6iIEaAhpTEALw_wcB" target="_blank"><div class="brand-bg"></div><img src="images/Day1.png" alt=""></a>
+            <a class="brand-card" href="https://www.3m.com.br/3M/pt_BR/3m-do-brasil/" target="_blank"><div class="brand-bg"></div><img src="images/3M.png" alt=""></a>
+            <a class="brand-card" href="https://cobrecom.com.br/representantes" target="_blank"><div class="brand-bg"></div><img src="images/Cobrecom.png" alt=""></a>
+          </div>
+        </div>
+
+        <button class="arrow-btn arrow-next" id="nextBrand" aria-label="Próximo">›</button>
+      </div>
+    </section>
+
+    <!-- CATALOG -->
+<section id="catalog" class="catalog" aria-label="Catálogo de serviços e produtos">
+  <div class="catalog-inner">
+    <div class="catalog-grid">
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/casa.png" alt="Fachadas">
+        </div>
+        <div>
+          <h3>Fachadas</h3>
+          <p>Projetos de fachadas personalizados em ACM, aço, PVC e revestimentos especiais com alto impacto visual.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Letras.png" alt="Letras Caixa">
+        </div>
+        <div>
+          <h3>Letras Caixa</h3>
+          <p>Letras caixa em ACM, aço, acrílico e iluminação LED para fachadas e sinalização com acabamento premium.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Adesivo.png" alt="Adesivos & Vinil">
+        </div>
+        <div>
+          <h3>Adesivos & Vinil</h3>
+          <p>Adesivos e envelopamentos de alta qualidade, impressão UV e laminados com alta durabilidade.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Luminoso.png" alt="Luminosos">
+        </div>
+        <div>
+          <h3>Luminosos</h3>
+          <p>Painéis e letreiros luminosos com tecnologia LED de baixo consumo e iluminação uniforme.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Frotas.png" alt="Envelopamento de Frotas">
+        </div>
+        <div>
+          <h3>Envelopamento de Frotas</h3>
+          <p>Personalize veículos e frotas com envelopamento que comunica profissionalismo e protege a pintura.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Sinalização.png" alt="Sinalização">
+        </div>
+        <div>
+          <h3>Sinalização</h3>
+          <p>Soluções de sinalização interna e externa para orientação e identidade visual do seu espaço.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Brindes.png" alt="Brindes">
+        </div>
+        <div>
+          <h3>Brindes</h3>
+          <p>Brindes personalizados para campanhas, eventos e ações promocionais com impressão de alta qualidade.</p>
+        </div>
+      </div>
+
+      <div class="catalog-item">
+        <div class="catalog-icon" aria-hidden>
+          <img src="images/Textil.png" alt="Têxtil">
+        </div>
+        <div>
+          <h3>Têxtil</h3>
+          <p>Uniformes, camisetas e peças personalizadas com impressão e acabamento profissional.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<nav class="nav">
+  <div class="nav-left">
+    <a href="#hero">
+      <img src="images/LogoPNG.png" alt="Guimarães Sign" class="nav-logo">
+    </a>
+  </div>
+  <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">☰</button>
+  <div class="nav-links">
+    <a href="#hero" class="nav-item active">Home</a>
+    <a href="#marcas" class="nav-item">Marcas</a>
+    <a href="#catalog" class="nav-item">Catálogo</a>
+    <a href="#services" class="nav-item">Serviços</a>
+    <a href="#orcamento" class="nav-item">Orçamento</a>
+  </div>
+</nav>
+
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio" class="portfolio" aria-label="Portfólio">
+      <div class="portfolio-inner">
+        <!-- imagem grande com track -->
+        <div class="portfolio-main" aria-hidden="false">
+          <div class="portfolio-track" id="portfolioTrack">
+            <!-- slides (substitua pelos seus arquivos) -->
+            <div class="portfolio-slide"><img src="images/fachada1.jpg" alt="Projeto 1"></div>
+            <div class="portfolio-slide"><img src="images/fachada2.jpg" alt="Projeto 2"></div>
+            <div class="portfolio-slide"><img src="images/fachada3.jpg" alt="Projeto 3"></div>
+            <div class="portfolio-slide"><img src="images/fachada4.jpg" alt="Projeto 4"></div>
+            <div class="portfolio-slide"><img src="images/fachada5.jpg" alt="Projeto 5"></div>
+          </div>
+        </div>
+
+        <!-- miniaturas -->
+        <div class="thumbs" id="portfolioThumbs" role="tablist" aria-label="Miniaturas do portfólio">
+          <div class="thumb active" data-index="0"><img src="images/fachada1.jpg" alt="Thumb 1"></div>
+          <div class="thumb" data-index="1"><img src="images/fachada2.jpg" alt="Thumb 2"></div>
+          <div class="thumb" data-index="2"><img src="images/fachada3.jpg" alt="Thumb 3"></div>
+          <div class="thumb" data-index="3"><img src="images/fachada4.jpg" alt="Thumb 4"></div>
+          <div class="thumb" data-index="4"><img src="images/fachada5.jpg" alt="Thumb 5"></div>
+        </div>
+      </div>
+    </section>
+
+<!-- Notificação WhatsApp -->
+<div class="whatsapp-notif" id="whatsappNotif">
+  <button class="notif-close" id="notifClose">×</button>
+<div class="notif-body">
+  <img src="images/LogoPNG.png" alt="Guimarães Sign">
+  <div class="notif-content">
+    <strong>Vendedor</strong>
+    <p>Guimarães Sign</p>
+  </div>
+</div>
+  <a href="https://wa.me/5519996625228" target="_blank" class="notif-btn">Fale agora com um vendedor</a>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  // delay de 2 segundos antes de mostrar a notificação
+  setTimeout(() => {
+    const notif = document.getElementById('whatsappNotif');
+    notif.style.transform = 'translateY(0)';
+    notif.style.opacity = '1';
+    notif.style.display = 'flex'; // garante que esteja visível
+
+    // toca som exatamente quando a notificação aparece
+    const audio = new Audio('sounds/Som.mp3'); // caminho do som
+    audio.play().catch(() => {
+      // fallback caso navegador bloqueie autoplay
+      document.addEventListener('click', () => audio.play(), { once: true });
+    });
+  }, 2000);
+
+  // fecha notificação ao clicar no X
+  document.getElementById('notifClose').addEventListener('click', () => {
+    document.getElementById('whatsappNotif').style.display = 'none';
+  });
+});
+</script>
+
+    <!-- Powered by ByteLab -->
+<div class="powered-by">
+  <img src="images/ByteLab.png" alt="ByteLab Logo">
+  <span>Powered by ByteLab</span>
+</div>
+
+    <!-- Section: Solicite um orçamento -->
+<section style="background:#0a0a0a; padding:80px 20px; color:white; font-family:Arial, sans-serif;">
+  <div style="max-width:900px; margin:auto; text-align:center;">
+    <h2 style="color:#007bff; font-size:38px; margin-bottom:10px;">Solicite um orçamento</h2>
+    <p style="font-size:18px; color:white; margin-bottom:40px;">
+      Para solicitar um orçamento preencha o campo abaixo
+    </p>
+
+    <!-- Formulário -->
+    <form style="display:flex; flex-direction:column; gap:18px;">
+      <input type="text" placeholder="Nome" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;">
+      <input type="email" placeholder="E-mail" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;">
+      <input type="text" placeholder="Telefone" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;">
+      <input type="text" placeholder="Empresa" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;">
+      <input type="text" placeholder="Cargo" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;">
+      <textarea placeholder="Digite sua mensagem aqui" rows="6" style="padding:14px; border-radius:10px; border:none; outline:none; font-size:16px;"></textarea>
+
+      <button type="submit" style="padding:15px; background:#007bff; border:none; color:white; font-size:18px; border-radius:10px; cursor:pointer; transition:0.3s;">
+        Enviar
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background:black; color:white; padding:40px 20px; font-family:Arial, sans-serif; margin-top:0;">
+  <div style="max-width:1100px; margin:auto; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+
+    <!-- Logo -->
+    <div>
+      <img src="images/LogoPNG.png" alt="Guimarães Sign" style="height:250px; object-fit:contain;">
+    </div>
+
+    <!-- Informações -->
+    <div style="font-size:16px; line-height:26px; max-width:500px;">
+      <strong>Guimarães Sign</strong><br>
+      Soluções profissionais em comunicação visual<br>
+      CNPJ: 00.000.000/0001-00<br>
+      Endereço: Rua Exemplo, 123 - Centro - Cidade/UF<br>
+      Telefone: (00) 00000-0000
+    </div>
+
+    <!-- Redes sociais -->
+    <div style="display:flex; gap:12px;">
+      <a href="#" style="color:white; font-size:22px; text-decoration:none;">Instagram</a>
+      <a href="#" style="color:white; font-size:22px; text-decoration:none;">WhatsApp</a>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:30px; font-size:14px; color:#ccc;">
+    © 2025 Guimarães Sign – Todos os direitos reservados
+  </p>
+</footer>
+    <footer>
+      © 2025 Guimarães Sign — Todos os direitos reservados
+    </footer>
+
+  </div>
+
+  <script>
+    
+    // abre link (usado para logos se preferir)
+    function openURL(url){ window.open(url, "_blank") }
+
+    // CARROSSEL MARCAS: setas movem a viewport da carousel
+    (function(){
+      const inner = document.getElementById('carouselInner');
+      const next = document.getElementById('nextBrand');
+      const prev = document.getElementById('prevBrand');
+
+      function getAmount(){
+        const item = inner.querySelector('.brand-card');
+        const gap = 28;
+        return item ? Math.round(item.offsetWidth + gap) : 220;
+      }
+
+      const NEXT = next || document.querySelector('.arrow-next');
+      const PREV = prev || document.querySelector('.arrow-prev');
+
+      if(NEXT) NEXT.addEventListener('click', ()=> inner.parentElement.scrollBy({ left: getAmount(), behavior: 'smooth' }));
+      if(PREV) PREV.addEventListener('click', ()=> inner.parentElement.scrollBy({ left: -getAmount(), behavior: 'smooth' }));
+
+      document.addEventListener('keydown',(e)=>{
+        if(e.key === 'ArrowRight') inner.parentElement.scrollBy({ left: getAmount(), behavior: 'smooth' });
+        if(e.key === 'ArrowLeft') inner.parentElement.scrollBy({ left: -getAmount(), behavior: 'smooth' });
+      });
+    })();
+
+    // PORTFÓLIO: thumbnails -> slide animation (desliza para a imagem clicada)
+    (function(){
+      const track = document.getElementById('portfolioTrack');
+      const thumbs = Array.from(document.querySelectorAll('#portfolioThumbs .thumb'));
+      const slides = Array.from(track.querySelectorAll('.portfolio-slide'));
+      let current = 0;
+
+      function updateActive(index){
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumbs[index].classList.add('active');
+      }
+
+      function goTo(index){
+        index = Math.max(0, Math.min(slides.length-1, index));
+        const width = track.parentElement.offsetWidth;
+        // move track by index * width
+        track.style.transform = `translateX(-${index * width}px)`;
+        current = index;
+        updateActive(index);
+      }
+
+      // inicializa
+      window.addEventListener('load', ()=> {
+        // garante que o track tem largura correta nas imagens
+        goTo(0);
+      });
+
+      // resize: recalcula posição atual (mantém o slide)
+      window.addEventListener('resize', ()=> {
+        goTo(current);
+      });
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', () => {
+       navLinks.classList.toggle('show');
+      });
+
+
+      // clique nas thumbs
+      thumbs.forEach(t => {
+        t.addEventListener('click', (e)=>{
+          const idx = parseInt(t.getAttribute('data-index'),10);
+          goTo(idx);
+        });
+      });
+
+         const closeBtn = document.getElementById('notifClose');
+        const notif = document.getElementById('whatsappNotif');
+
+        closeBtn.addEventListener('click', () => {
+         notif.style.display = 'none';
+      });
+
+      // suporte swipe simples no track (mobile)
+      (function(){
+        let startX = 0, dx = 0, isDown = false;
+        const parent = track.parentElement;
+        parent.addEventListener('touchstart', (e)=>{ isDown=true; startX = e.touches[0].clientX; dx=0; }, {passive:true});
+        parent.addEventListener('touchmove', (e)=>{ if(!isDown) return; dx = e.touches[0].clientX - startX; }, {passive:true});
+        parent.addEventListener('touchend', ()=>{ if(!isDown) return; isDown=false; if(Math.abs(dx) > 40){ if(dx < 0) goTo(current+1); else goTo(current-1); } }, {passive:true});
+      })();
+    })();
+  </script>
+</body>
+</html>
